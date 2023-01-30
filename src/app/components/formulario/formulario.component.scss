@@ -1,0 +1,24 @@
+h2 {
+  text-align: center;
+}
+
+.container {
+  width: 50%;
+}
+
+input {
+  &.is-valid {
+    border: 1px solid green;
+  }
+  &.is-invalid {
+    border: 1px solid red;
+  }
+}
+
+.message {
+  opacity: 0;
+  transition: all 0.5s ease-in;
+  &.active {
+    opacity: 1;
+  }
+}
