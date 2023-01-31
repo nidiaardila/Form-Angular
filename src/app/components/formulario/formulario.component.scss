@@ -2,23 +2,19 @@ h2 {
   text-align: center;
 }
 
+div{
+  font-weight:bold;
+}
+
 .container {
   width: 50%;
 }
 
-input {
-  &.is-valid {
-    border: 1px solid green;
-  }
-  &.is-invalid {
-    border: 1px solid red;
-  }
+.valid {
+    color:green;
 }
 
-.message {
-  opacity: 0;
-  transition: all 0.5s ease-in;
-  &.active {
-    opacity: 1;
+.invalid{
+    color:red;
   }
-}
+

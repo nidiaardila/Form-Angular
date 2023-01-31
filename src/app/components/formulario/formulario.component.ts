@@ -14,13 +14,14 @@ constructor(){
   let controles:any = {
     nombre  : new FormControl('',[Validators.minLength(5), Validators.required]),
     fecha : new FormControl('', []),
-    telefono : new FormControl ('',[]),
+    telefono : new FormControl ('',[Validators.minLength(8), Validators.required]),
     email : new FormControl ('', [Validators.required, Validators.pattern("[a-zA-Z0-9!#$%&'*_+-]([\.]?[a-zA-Z0-9!#$%&'*_+-])+@[a-zA-Z0-9]([^@&%$\/()=?¿!.,:;]|\d)+[a-zA-Z0-9][\.][a-zA-Z]{2,4}([\.][a-zA-Z]{2})?")]),
     password : new FormControl ('', [Validators.required]),
-    checkTerminos : new FormControl (false, []),
+    checkSubscribe : new FormControl ( false, []),
   }
 
   this.form = new FormGroup(controles)
+ 
 }
 
 login(){
@@ -29,28 +30,5 @@ login(){
     console.log('Hubo un errror')
   }
 }
-
-  // get nombre(){
-  // return this.form.get('nombre');
-  // }
-
-  // get isNombreValid(){
-  //   return this.nombre.touched && this.nombre.valid;
-  // }
-
-  // get isNombreInvalid(){
-  //   return this.nombre.touched && this.nombre.invalid;
-  // }
-
-  // nombre = new FormControl('',[Validators.minLength(5), Validators.required]);
-  // checkTerminos = new FormControl(false);
-
-  // get isNombreValid(){
-  //   return this.nombre.touched && this.nombre.valid;
-  // }
-
-  // get isNombreInvalid(){
-  //   return this.nombre.touched && this.nombre.invalid;
-  // }
  
 }

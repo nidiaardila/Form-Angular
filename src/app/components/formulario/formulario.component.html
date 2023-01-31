@@ -1,52 +1,23 @@
 
 <div class="container">
     <h2 class="m-5">Formulario</h2>
-    <form [formGroup]="form">
-      
-        <!-- <div class="mb-4">
-          <label for="nombre" class="form-label">Nombre y Apellido</label>
-          <input [class.is-valid]="nombre.touched && nombre.valid" 
-                 [class.is-invalid]="nombre.touched && nombre.invalid"
-          type="text" class="form-control" id="nombre" aria-describedby="emailHelp" [formControl]="nombre">
-          <div class="message" [class.active]="nombre.touched && nombre.invalid">
-            <p>
-              <strong *ngIf="nombre.touched && nombre.hasError('required')">Este campo es requerido</strong>
-            </p>
-          </div>
-        </div> -->
-
-        <!-- <div class="mb-4">
-          <label for="nombre" class="form-label">Nombre y Apellido</label>
-          <input [class.is-valid]="isNombreValid" 
-                 [class.is-invalid]="isNombreInvalid"
-          type="text" class="form-control" id="nombre" aria-describedby="emailHelp" formControlName="nombre">
-          <div class="message" [class.active]="isNombreInvalid">
-            <p>
-              <strong *ngIf="nombre.touched && nombre.hasError('required')">Este campo es requerido</strong>
-            </p>
-          </div>
-        </div> -->
+    <form [formGroup]="form" (ngSubmit)="login()" class="needs-validation" novalidate>  <!--Enviar la informacion de los campos en nuestro formulario-->
 
         <div class="mb-4">
           <label for="nombre" class="form-label">Nombre y Apellido</label>
-          <input type="text" class="form-control" id="nombre" aria-describedby="emailHelp" formControlName="nombre">
-          <div class="message" >
-            <p>
-              <strong >Este campo es requerido</strong>
-            </p>
-          </div>
+          <input type="text" class="form-control" id="nombre"  formControlName="nombre">
+          <div class="valid" *ngIf="form.controls['nombre'].valid">campo correcto</div>
+          <div class="invalid" *ngIf="form.controls['nombre'].dirty && form.controls['nombre'].errors?.['required']">Este campo es requerido</div>
+          <div class="invalid" *ngIf="form.controls['nombre'].errors?.['minlength']">Debe contener minimo 5 caracteres</div>
         </div>
         
-        
-
         <!-- <pre>
            <code>{{nombre | json}}</code>
         </pre> -->
 
         <div class="mb-4">
           <label for="nacimiento" class="form-label">Fecha de nacimiento</label>
-          <input type="date" class="form-control" id="nacimiento" aria-describedby="emailHelp" formControlName="fecha">
-          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+          <input type="date" class="form-control" id="nacimiento"  formControlName="fecha">
         </div>
 
         <div class="mb-4">
@@ -62,15 +33,16 @@
         </div>
       
         <div class="mb-4">
-          <label for="exampleInputEmail1" class="form-label">Telefono</label>
-          <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formArrayName="telefono">
-          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+          <label for="telefono" class="form-label">Telefono</label>
+          <input type="number" class="form-control" id="telefono"  formControlName="telefono">
         </div>
       
       <div class="mb-4">
         <label for="email" class="form-label">Email</label>
-        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" formControlName="email">
-        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        <input type="email" class="form-control" id="email"  formControlName="email">
+        <div class="valid" *ngIf="form.controls['email'].valid">campo correcto</div>
+        <div class="invalid" *ngIf="form.controls['email'].dirty && form.controls['email'].errors?.['required']">Este campo es requerido</div>
+        <div class="invalid" *ngIf="form.controls['email'].dirty && form.controls['email'].errors?.['pattern']">Ingrese un email válido</div>
       </div>
 
       <div class="mb-4">
@@ -79,13 +51,16 @@
       </div>
 
       <div class="mb-4 form-check">
-        <input type="checkbox" class="form-check-input" id="terminos" formControlName="checkTerminos">
-        <label class="form-check-label" for="terminos">Acepto Terminos y condiciones</label>
+        <input type="checkbox" class="form-check-input" id="checkSubscribe" formControlName="checkSubscribe">
+        <label class="form-check-label" for="checkSubscribe">Deseo recibir noticias en mi correo</label>
       </div>
 
       <div class="mt-4">
-        <button type="submit" class="btn btn-primary" (click)="login()">Submit</button>
+        <button type="submit" class="btn btn-primary"  [disabled]="form.invalid">Enviar</button>
+        <button type="reset" class="btn btn-danger mx-3">Borrar</button>
       </div>
       
     </form>
     </div>
+
+    
