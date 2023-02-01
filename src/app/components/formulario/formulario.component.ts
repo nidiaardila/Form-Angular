@@ -14,9 +14,10 @@ constructor(){
   let controles:any = {
     nombre  : new FormControl('',[Validators.minLength(5), Validators.required]),
     fecha : new FormControl('', []),
+    genero : new FormControl('',[]),
     telefono : new FormControl ('',[Validators.minLength(8), Validators.required]),
     email : new FormControl ('', [Validators.required, Validators.pattern("[a-zA-Z0-9!#$%&'*_+-]([\.]?[a-zA-Z0-9!#$%&'*_+-])+@[a-zA-Z0-9]([^@&%$\/()=?¿!.,:;]|\d)+[a-zA-Z0-9][\.][a-zA-Z]{2,4}([\.][a-zA-Z]{2})?")]),
-    password : new FormControl ('', [Validators.required]),
+    password : new FormControl ('', [Validators.minLength(4), Validators.required]),
     checkSubscribe : new FormControl ( false, []),
   }
 
@@ -26,9 +27,9 @@ constructor(){
 
 login(){
   console.log(this.form);
-  if (this.form.controls['email'].errors?.['pattern']){
-    console.log('Hubo un errror')
-  }
+  // if (this.form.controls['email'].errors?.['pattern']){
+  //   console.log('Hubo un errror')
+  // }
 }
  
 }

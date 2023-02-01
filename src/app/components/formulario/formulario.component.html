@@ -1,8 +1,9 @@
 
 <div class="container">
     <h2 class="m-5">Formulario</h2>
-    <form [formGroup]="form" (ngSubmit)="login()" class="needs-validation" novalidate>  <!--Enviar la informacion de los campos en nuestro formulario-->
+    <form [formGroup]="form" (ngSubmit)="login()"  class="needs-validation" novalidate>  <!--Enviar la informacion de los campos en nuestro formulario-->
 
+        <!--input requerido -->
         <div class="mb-4">
           <label for="nombre" class="form-label">Nombre y Apellido</label>
           <input type="text" class="form-control" id="nombre"  formControlName="nombre">
@@ -15,11 +16,13 @@
            <code>{{nombre | json}}</code>
         </pre> -->
 
+        <!-- input opcional -->
         <div class="mb-4">
           <label for="nacimiento" class="form-label">Fecha de nacimiento</label>
           <input type="date" class="form-control" id="nacimiento"  formControlName="fecha">
         </div>
 
+        <!-- input opcional -->
         <div class="mb-4">
         <p>Genero</p>
           <div class="form-check form-check-inline">
@@ -32,11 +35,16 @@
           </div>
         </div>
       
+        <!--input requerido -->
         <div class="mb-4">
           <label for="telefono" class="form-label">Telefono</label>
-          <input type="number" class="form-control" id="telefono"  formControlName="telefono">
+          <input type="number" class="form-control" id="telefono" formControlName="telefono">
+          <div class="valid" *ngIf="form.controls['telefono'].valid && form.controls['telefono'].value?.toString().length >= 8">campo correcto</div>
+          <div class="invalid" *ngIf="form.controls['telefono'].dirty && form.controls['telefono'].value?.toString().length < 8 && !form.controls['telefono'].errors?.['required']">Ingrese un numero de telefono valido </div>
+          <div class="invalid" *ngIf="form.controls['telefono'].dirty && form.controls['telefono'].errors?.['required']">Este campo es requerido</div>
         </div>
-      
+
+        <!--input requerido -->
       <div class="mb-4">
         <label for="email" class="form-label">Email</label>
         <input type="email" class="form-control" id="email"  formControlName="email">
@@ -45,11 +53,16 @@
         <div class="invalid" *ngIf="form.controls['email'].dirty && form.controls['email'].errors?.['pattern']">Ingrese un email válido</div>
       </div>
 
+      <!--input requerido -->
       <div class="mb-4">
         <label for="password" class="form-label">Password</label>
         <input type="password" class="form-control" id="password" formControlName="password">
+        <div class="valid" *ngIf="form.controls['password'].valid">campo correcto</div>
+        <div class="invalid" *ngIf="form.controls['password'].dirty && form.controls['password'].errors?.['required']">Este campo es requerido</div>
+        <div class="invalid" *ngIf="form.controls['password'].errors?.['minlength']">Debe contener minimo 4 caracteres</div>
       </div>
 
+        <!-- opcional -->
       <div class="mb-4 form-check">
         <input type="checkbox" class="form-check-input" id="checkSubscribe" formControlName="checkSubscribe">
         <label class="form-check-label" for="checkSubscribe">Deseo recibir noticias en mi correo</label>
@@ -62,5 +75,3 @@
       
     </form>
     </div>
-
-    
